@@ -124,13 +124,13 @@ def broadcast_block():
     elif block['index'] > blockchain.chain[-1].index:
         response = {
             'message': 'Blockchain seems to differ from local blockchain.'
-            }
+        }
         blockchain.resolve_conflicts = True
         return jsonify(response), 200
     else:
         response = {
             'message': 'Blockchain seems to be shorter, block not added'
-            }
+        }
         return jsonify(response), 409
 
 
@@ -199,6 +199,7 @@ def mine():
             'wallet_set_up': wallet.public_key != None
         }
         return jsonify(response), 500
+
 
 @app.route('/resolve-conflicts', methods=['POST'])
 def resolve_conflicts():
